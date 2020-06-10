@@ -21,7 +21,8 @@ var getTuple = async (client, username) => {
     if (standTup) {
         return standTup.get('stand');
     }
-    return null;
+    console.log("KONODIODA")
+    return false;
 }
 
 var allTuples = async (client) => {
