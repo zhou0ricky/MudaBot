@@ -25,12 +25,17 @@ var getTuple = async (client, username) => {
 }
 
 var allTuples = async (client) => {
-    const standList = await client.stands.findAll();
-    return standList;
+    const standList = await client.stands.findAll({attributes: ['user', 'stand']});
+    const standString = standList.map(t => t.user + ' ' + t.stand).join('\n')
+    return standString;
 }
 
 var deleteTuple = async (client, username) => {
     await client.stands.destroy({ where: { user: username } });
+}
+
+var deleteAll = async (client) => {
+    await client.stands.destroy({ where: {}, truncate: true});
 }
 
 module.exports =  {
@@ -38,4 +43,5 @@ module.exports =  {
     getTuple: getTuple,
     allTuples: allTuples,
     deleteTuple: deleteTuple,
+    deleteAll: deleteAll,
 }

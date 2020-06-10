@@ -16,6 +16,7 @@ const Stands = sequelize.define('stands', {
     stand: {
         type: Sequalize.STRING,
         unique: true,
+        allowNull: false,
     },
 });
 
