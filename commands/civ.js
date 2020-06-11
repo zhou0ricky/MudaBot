@@ -104,7 +104,6 @@ function arrToString(a) {
  * @param {list} args A list of string arguments.
  */
 var civ = (message, args) => {
-    console.log(typeof(message))
     var p_list = [], rm_civs = []; // Arrays of players and banned  civs
     var civs = shuffle(_civs.slice(0)); // Copy and shuffle civ array
     /**
