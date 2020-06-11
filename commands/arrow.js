@@ -1,6 +1,11 @@
 const db = require("../handlers/dbFuncs.js")
 const Sequalize = require('sequelize');
 
+/**
+ * Assigns caller a stand from Database if user doesn't have one
+ * @param {object} message 
+ * @param {array} args 
+ */
 var arrow = async (message, args) => {
     const client = message.client;
     const user = message.author.username;
@@ -20,7 +25,7 @@ var arrow = async (message, args) => {
 
 module.exports = {
     name: "arrow",
-    description: "Gives user a stand if they lack one",
+    description: "Gives user a random stand",
     cooldown: 1,
     execute: arrow,
 }

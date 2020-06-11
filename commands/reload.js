@@ -1,4 +1,10 @@
-var reload = (message, args) => {
+/**
+ * When bot is running, this reloads a command to include currently made 
+ * changes
+ * @param {*} message 
+ * @param {*} args 
+ */
+const reload = (message, args) => {
     if (!args.length) return message.channel.send
         (`No command passed, ${message.author}!`);
     const commandName = args[0].toLowerCase();

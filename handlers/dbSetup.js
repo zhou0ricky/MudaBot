@@ -1,4 +1,3 @@
-const Discord = require('discord.js');
 const Sequalize = require('sequelize');
 
 const sequelize = new Sequalize('database', 'user', 'password', {
