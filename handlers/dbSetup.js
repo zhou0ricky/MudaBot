@@ -11,7 +11,7 @@ const sequelize = new Sequalize('database', 'user', 'password', {
 const Stands = sequelize.define('stands', {
     user: {
         type: Sequalize.STRING,
-        unique: true,
+        unique: false,
     },
     stand: {
         type: Sequalize.STRING,

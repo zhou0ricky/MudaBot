@@ -6,7 +6,7 @@ var testdelete = (message, args) => {
     if (args.length < 1) { return message.channel.send("testAdd takes in 1 arguments") };
     const username = args[0];
     console.log(`deleting ${username}`);
-    deleteTuple(client, username);
+    deleteTuple(client.stands, username);
     return 
 }
 

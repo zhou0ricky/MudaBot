@@ -8,7 +8,7 @@ var testadd = (message, args) => {
     const username = args[0];
     const standname = args[1];
     console.log(`${username} ` + `${standname}`);
-    addTuple(client, username, standname);
+    addTuple(client.stands, username, standname);
     return 
 }
 

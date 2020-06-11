@@ -1,8 +1,8 @@
 // Variables needed: database table (stands)
 // username, stand
-var addTuple = async (client, username, standname) => {
+var addTuple = async (table, username, standname) => {
     try { 
-        const stand = await client.stands.create({
+        const stand = await table.create({
             user: username,
             stand: standname,
         });
@@ -16,27 +16,27 @@ var addTuple = async (client, username, standname) => {
     }
 }
 
-var getTuple = async (client, username) => {
-    const standTup = await client.stands.findOne( {where: {user: username} });
+var getTuple = async (table, username) => {
+    const standTup = await table.findOne( {where: {user: username} });
     if (standTup) {
         return standTup.get('stand');
     }
-    console.log("KONODIODA")
     return false;
 }
 
-var allTuples = async (client) => {
-    const standList = await client.stands.findAll({attributes: ['user', 'stand']});
+var allTuples = async (table) => {
+    const standList = await table.findAll({attributes: ['user', 'stand']});
+    console.log(standList);
     const standString = standList.map(t => t.user + ' ' + t.stand).join('\n')
     return standString;
 }
 
-var deleteTuple = async (client, username) => {
-    await client.stands.destroy({ where: { user: username } });
+var deleteTuple = async (table, username) => {
+    await table.destroy({ where: { user: username } });
 }
 
-var deleteAll = async (client) => {
-    await client.stands.destroy({ where: {}, truncate: true});
+var deleteAll = async (table) => {
+    await table.destroy({ where: {}, truncate: true});
 }
 
 module.exports =  {
