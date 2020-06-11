@@ -156,6 +156,7 @@ module.exports = {
     name: 'civ',
     aliases: ['civ','draft','civs'],
     description: 'Draft civs for Civilization V! The first element of args specifies the number of players and the second specifies the number of civs drafted to each player. Subsequent arguments can be used to ban civs (for example, -bab bans Babylon). An argument of the form [name1,name2,name3,name4] outputs those names on the draft printout, otherwise the generic "Player #" is used.',
+    usage: '&civ num_players num_options [name1,name2,name3,...] -bannedciv1 -banendciv2 ...',
     cooldown: 1,
     execute: civ,
 };
