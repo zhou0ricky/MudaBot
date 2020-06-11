@@ -6,7 +6,10 @@
  */
 const addTuple = async (table, attrObj) => {
     try { 
-        const stand = await table.create(attrObj);
+        const stand = await table.findOrCreate({
+            where: attrObj,
+            defaults: attrObj
+        });
         return console.log("added to database");
     }
     catch (e) {
