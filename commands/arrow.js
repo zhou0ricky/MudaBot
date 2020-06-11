@@ -4,7 +4,8 @@ const Sequalize = require('sequelize');
 var arrow = async (message, args) => {
     const client = message.client;
     const user = message.author.username;
-    if (await db.getTuple(client.stands, user)) {
+    console.log("THE WOLRDO")
+    if (await db.getAttr(client.stands, {where: {user: user}}, "stand")) {
         return message.channel.send(`You already have a stand ${message.author}`);
     }
     const standTup = client.stands.findOne({

@@ -4,7 +4,7 @@ const embed = require("../handlers/messageEmbeded.js")
 var mystand = async (message, args) => {
     const client = message.client;
     const user = message.author.username;
-    const stand = await db.getTuple(client.stands, user);
+    const stand = await db.getAttr(client.stands, {where: {user: user}}, "stand");
     if (!stand) {
         return message.channel.send(`You don't have a stand ${message.author}`);
     }

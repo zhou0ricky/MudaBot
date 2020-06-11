@@ -1,47 +1,67 @@
-// Variables needed: database table (stands)
-// username, stand
-var addTuple = async (table, username, standname) => {
+/**
+ * Generic function that creates a record with given attributes to
+ * a specified table
+ * @param {Model} table
+ * @param {Object} attrObj
+ */
+const addTuple = async (table, attrObj) => {
     try { 
-        const stand = await table.create({
-            user: username,
-            stand: standname,
-        });
-        return console.log("stand added to database");
+        const stand = await table.create(attrObj);
+        return console.log("added to database");
     }
     catch (e) {
         if (e.name === 'SequelizeUniqueConstraintError') {
-            console.log("Stand/User already exists.")
+            console.log("record attribute already exists.")
         }
         console.log("database error");
     }
 }
 
-var getTuple = async (table, username) => {
-    const standTup = await table.findOne( {where: {user: username} });
-    if (standTup) {
-        return standTup.get('stand');
-    }
-    return false;
+/**
+ * Gets a the attribute corresponding to the tuple that satisfies 
+ * all the filter conditions in the inputed table
+ * @param {Model} table 
+ * @param {Object} filters 
+ * @param {String} attr 
+ */
+const getAttr = async (table, filters, attr) => {
+    const record = await table.findOne(filters);
+    return record ? record.get(attr) : false;
 }
 
-var allTuples = async (table) => {
-    const standList = await table.findAll({attributes: ['user', 'stand']});
+/**
+ * Returns all tuples with specified attributes in string format
+ * @param {Model} table 
+ * @param {String Array} attrs
+ */
+const allTuples = async (table, attrs) => {
+    const standList = await table.findAll({attributes: attrs});
     console.log(standList);
-    const standString = standList.map(t => t.user + ' ' + t.stand).join('\n')
+    const standString = standList.map(record => attrs.map
+        (attr => record.get(attr)).join(" ")).join('\n')
     return standString;
 }
 
-var deleteTuple = async (table, username) => {
-    await table.destroy({ where: { user: username } });
+/**
+ * deletes tuples that satisfy filter conditions
+ * @param {model} table 
+ * @param {object} filters 
+ */
+var deleteTuple = async (table, filters) => {
+    await table.destroy(filters);
 }
 
+/**
+ * deletes all tuples from table
+ * @param {model} table 
+ */
 var deleteAll = async (table) => {
     await table.destroy({ where: {}, truncate: true});
 }
 
 module.exports =  {
     addTuple: addTuple,
-    getTuple: getTuple,
+    getAttr: getAttr,
     allTuples: allTuples,
     deleteTuple: deleteTuple,
     deleteAll: deleteAll,
