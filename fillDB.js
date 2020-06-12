@@ -14,7 +14,7 @@ const dbFill = async () => {
     for (const file of imageFiles) {
         console.log(file);
         const standName = file.slice(0, -4).replace("_", " ");
-        await db.addTuple(stands, {user: "empty", stand: standName})    
+        await db.addTuple(stands, {user: "empty", userId: "empty", stand: standName})    
     }
 }
 

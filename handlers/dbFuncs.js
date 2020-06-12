@@ -1,3 +1,4 @@
+
 /**
  * Generic function that creates a record with given attributes to
  * a specified table

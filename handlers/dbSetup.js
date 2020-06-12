@@ -12,6 +12,10 @@ const Stands = sequelize.define('stands', {
         type: Sequalize.STRING,
         unique: false,
     },
+    userId: { 
+        type: Sequalize.STRING,
+        unique: false,
+    },
     stand: {
         type: Sequalize.STRING,
         unique: true,

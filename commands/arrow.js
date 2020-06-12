@@ -9,7 +9,8 @@ const Sequalize = require('sequelize');
 var arrow = async (message, args) => {
     const client = message.client;
     const user = message.author.username;
-    if (await db.getAttr(client.stands, {where: {user: user}}, "stand")) {
+    const id = message.author.id;
+    if (await db.getAttr(client.stands, {where: {user: user, userId: id}}, "stand")) {
         return message.channel.send(`You already have a stand ${message.author}`);
     }
     const standTup = client.stands.findOne({
@@ -18,6 +19,7 @@ var arrow = async (message, args) => {
     }).then((encounter) => {
         if (!encounter) { return message.channel.send(`No stands available, ${message.author}!`) }
         encounter.user = message.author.username;
+        encounter.userId = message.author.id;
         encounter.save();
         return message.channel.send(`${message.author} your new stand is ${encounter.stand}`);
     }) 
