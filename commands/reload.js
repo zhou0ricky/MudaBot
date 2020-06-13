@@ -29,5 +29,6 @@ module.exports = {
     name: 'reload', 
     description: 'Reloads a command',
     usage: '[command name]',
+    commandType: "testing",
     execute: reload,
 }

@@ -43,8 +43,16 @@ const standStats = sequelize.define('Stand Statistics',
     }   
 });
 
+const botDevs = sequelize.define('Bot Devs', {
+    userId: {
+        type: Sequalize.STRING,
+        unique: true,
+    }
+});
+
 module.exports = {
     sequelize: sequelize,
     stands: stands,
     standStats: standStats,
+    botDevs: botDevs,
 };

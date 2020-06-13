@@ -2,7 +2,7 @@
 const db = require("./handlers/dbFuncs.js")
 const appDir = require('app-root-path');
 const fs = require('fs');
-const { standStats } = require("./handlers/dbSetup"); 
+const { standStats, botDevs } = require("./handlers/dbSetup"); 
 
 const dbFill = async () => {
     const imageFiles = fs.readdirSync(appDir + '/images').filter(file => 
@@ -15,6 +15,8 @@ const dbFill = async () => {
         const standName = file.slice(0, -4).replace("_", " ");
         await db.addTuple(standStats, {stand: standName, stats: 0})    
     }
+
+    await db.addTuple(botDevs, {userId: "322430899981647872"} )
 }
 
 dbFill();

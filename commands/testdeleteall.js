@@ -9,5 +9,6 @@ var testdeleteall = (message, args) => {
 
 module.exports = {
     name: "testdeleteall",
+    commandType: "testing",
     execute: testdeleteall,
 }

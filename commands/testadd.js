@@ -1,9 +1,10 @@
 
 const { addTuple } = require("../handlers/dbFuncs");
-const { standStats } = require("../handlers/dbSetup"); 
+const { standStats, botDevs } = require("../handlers/dbSetup"); 
 
 var testadd = (message, args) => {
     console.log(args);
+
     if (args.length != 2) { return message.channel.send("testAdd takes in 1 arguments") };
     const standname = args[0];
     const stats = args[1];
@@ -18,5 +19,6 @@ var testadd = (message, args) => {
 
 module.exports = {
     name: "testadd",
+    commandType: "testing",
     execute: testadd,
 }

@@ -1,6 +1,7 @@
 const { prefix } = require('../config.json');
+const { botDevs } = require('./dbSetup');
 
-module.exports = (message, client) => {
+module.exports = async (message, client) => {
     // Disregard messages from bots and start with no prefix 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -18,6 +19,14 @@ module.exports = (message, client) => {
     // Checks for cooldowns
     if (!require('./cooldowns')(message, client, command)) return;
 
+    // Allow for only devs to use
+    if (command.commandType && (command.commandType === "testing")) {
+        const userId = message.author.id;
+        const isBotDev = await botDevs.findOne( {where: {userId: userId} });
+        if (!isBotDev) {
+            return message.reply("you don't have access to that command")
+        }
+    }
     try {
         command.execute(message, args);
     } catch (error) {

@@ -12,5 +12,6 @@ var testshowall = async (message, args) => {
 
 module.exports = {
     name: "testshowall",
+    commandType: "testing",
     execute: testshowall,
 }
