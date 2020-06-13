@@ -19,7 +19,7 @@ const stands = sequelize.define('stands',
     },
     stand: {
         type: Sequalize.STRING,
-        unique: true,
+        unique: false,
         allowNull: false,
     },
 },
