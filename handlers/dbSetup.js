@@ -7,8 +7,9 @@ const sequelize = new Sequalize('database', 'user', 'password', {
     storage: 'database.sqlite',
 });
 
-const Stands = sequelize.define('stands', {
-    user: {
+const stands = sequelize.define('stands',
+{
+    guildId: {
         type: Sequalize.STRING,
         unique: false,
     },
@@ -21,8 +22,29 @@ const Stands = sequelize.define('stands', {
         unique: true,
         allowNull: false,
     },
+},
+{
+    indexes:[
+        {
+            unique: false,
+            fields: ["guildId"]
+        }
+    ]
+});
+
+const standStats = sequelize.define('Stand Statistics', 
+{
+    stand: {
+        type: Sequalize.STRING,
+        unique: true,
+    },
+    stats: {
+        type: Sequalize.NUMBER,
+    }   
 });
 
 module.exports = {
-    stands: Stands
-}
+    sequelize: sequelize,
+    stands: stands,
+    standStats: standStats,
+};

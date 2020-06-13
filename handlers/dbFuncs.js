@@ -7,7 +7,7 @@
  */
 const addTuple = async (table, attrObj) => {
     try { 
-        const stand = await table.findOrCreate({
+        await table.findOrCreate({
             where: attrObj,
             defaults: attrObj
         });

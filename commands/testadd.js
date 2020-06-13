@@ -1,20 +1,18 @@
 
 const { addTuple } = require("../handlers/dbFuncs");
+const { standStats } = require("../handlers/dbSetup"); 
 
 var testadd = (message, args) => {
-    const client = message.client; 
     console.log(args);
-    if (args.length != 3) { return message.channel.send("testAdd takes in 3 arguments") };
-    const username = args[0];
-    const id = args[1];
-    const standname = args[2];
-    console.log(`${username} ` + `${standname}`);
-    addTuple(client.stands, 
+    if (args.length != 2) { return message.channel.send("testAdd takes in 1 arguments") };
+    const standname = args[0];
+    const stats = args[1];
+    console.log(`${standname} ` + `${stats}`);
+    addTuple(standStats,
         {
-            user: username,
-            userId: id,
-            stand: standname
-        });
+            stand: standname,
+            stats: stats
+        })
     return 
 }
 

@@ -1,5 +1,6 @@
 const db = require("../handlers/dbFuncs.js")
 const embed = require("../handlers/messageEmbeded.js")
+const { stands } = require("../handlers/dbSetup"); 
 
 /**
  * Sends an embeded message containing stand information to the 
@@ -8,10 +9,10 @@ const embed = require("../handlers/messageEmbeded.js")
  * @param {Array} args 
  */
 const mystand = async (message, args) => {
-    const client = message.client;
-    const user = message.author.username;
+    const guildId = message.guild.id;
     const id = message.author.id;
-    const stand = await db.getAttr(client.stands, {where: {user: user, userId: id}}, "stand");
+    const stand = await db.getAttr(stands, {where: {
+        guildId: guildId, userId: id}}, "stand");
     if (!stand) {
         return message.channel.send(`You don't have a stand ${message.author}`);
     }

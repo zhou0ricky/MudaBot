@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const { token } = require('./config.json');
-const { stands } = require('./handlers/dbSetup');
+const { sequelize } = require('./handlers/dbSetup');
 
 const client = new Discord.Client();
 
@@ -12,8 +12,7 @@ const client = new Discord.Client();
 
 // Signifies Bot is connected
 client.once('ready', () => {
-    client.stands = stands;
-    client.stands.sync();
+    sequelize.sync();
     console.log('Ready!');
 });
 
