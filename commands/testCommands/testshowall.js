@@ -1,6 +1,6 @@
 
-const { allTuples } = require("../handlers/dbFuncs");
-const { stands } = require("../handlers/dbSetup");
+const { allTuples } = require("../../handlers/dbFuncs");
+const { stands } = require("../../handlers/dbSetup");
 
 var testshowall = async (message, args) => {
     const table = await allTuples(stands, ["guildId", "userId", "stand"]);

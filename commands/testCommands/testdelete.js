@@ -1,5 +1,5 @@
-const { deleteTuple } = require("../handlers/dbFuncs");
-const { stands } = require("../handlers/dbSetup"); 
+const { deleteTuple } = require("../../handlers/dbFuncs");
+const { stands } = require("../../handlers/dbSetup"); 
 
 function getId(mention) {
 	// The id is the first and only match found by the RegEx.

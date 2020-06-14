@@ -1,5 +1,5 @@
-const { deleteAll } = require("../handlers/dbFuncs");
-const { stands, standStats } = require("../handlers/dbSetup");
+const { deleteAll } = require("../../handlers/dbFuncs");
+const { stands, standStats } = require("../../handlers/dbSetup");
 
 var testdeleteall = (message, args) => {
     deleteAll(stands);
