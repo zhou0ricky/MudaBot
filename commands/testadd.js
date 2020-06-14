@@ -1,6 +1,6 @@
 
 const { addTuple } = require("../handlers/dbFuncs");
-const { standStats, botDevs } = require("../handlers/dbSetup"); 
+const { standStats } = require("../handlers/dbSetup"); 
 
 var testadd = (message, args) => {
     console.log(args);

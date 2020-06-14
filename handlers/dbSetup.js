@@ -38,9 +38,30 @@ const standStats = sequelize.define('Stand Statistics',
         type: Sequalize.STRING,
         unique: true,
     },
-    stats: {
+    power: {
         type: Sequalize.NUMBER,
-    }   
+        defaultValue: 0,
+    },
+    speed: {
+        type: Sequalize.NUMBER,
+        defaultValue: 0,
+    },
+    range: {
+        type: Sequalize.NUMBER,
+        defaultValue: 0,
+    },
+    durability: {
+        type: Sequalize.NUMBER,
+        defaultValue: 0,
+    },
+    precision: {
+        type: Sequalize.NUMBER,
+        defaultValue: 0,
+    },
+    potential: {
+        type: Sequalize.NUMBER,
+        defaultValue: 0,
+    }
 });
 
 const botDevs = sequelize.define('Bot Devs', {
